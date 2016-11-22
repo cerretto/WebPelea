@@ -10,31 +10,31 @@
 <body>
 	<div class="container-fluid" style="margin-top: 50px;">
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label id="lblNombre" class="col-lg-4 control-label">Nombre</label>
+				<label id="lblNombre" class="col-lg-4 control-label" style="text-align: right; margin-top: 5px;">Nombre:</label>
 				<div class="col-lg-4">
 					<input type="text" name="nombre" class="form-control" placeholder="Nombre">
 				</div>
 			</div>
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label id="lblDefensa" class="col-lg-4 control-label">Defensa</label>
+				<label id="lblDefensa" class="col-lg-4 control-label" style="text-align: right; margin-top: 5px;">Defensa:</label>
 				<div class="col-lg-4">
 					<input type="text" name="defensa" class="form-control" placeholder="Defensa">
 				</div>
 			</div>
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label id="lblEnergia" class="col-lg-4 control-label">Energía</label>
+				<label id="lblEnergia" class="col-lg-4 control-label" style="text-align: right; margin-top: 5px;">Energía:</label>
 				<div class="col-lg-4">
 					<input type="text" name="energia" class="form-control" placeholder="Energía">
 				</div>
 			</div>
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label id="lblEvasion" class="col-lg-4 control-label">Evasión</label>
+				<label id="lblEvasion" class="col-lg-4 control-label" style="text-align: right; margin-top: 5px;">Evasión:</label>
 				<div class="col-lg-4">
 					<input type="text" name="evasion" class="form-control" placeholder="Evasión">
 				</div>
 			</div>
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label id="lblVida" class="col-lg-4 control-label">Vida</label>
+				<label id="lblVida" class="col-lg-4 control-label" style="text-align: right; margin-top: 5px;">Vida:</label>
 				<div class="col-lg-4">
 					<input type="text" name="vida" class="form-control" placeholder="Vida">
 				</div>	
