@@ -75,6 +75,10 @@ public class PersonajeLogic {
 		}
 	}
 	
+	public Personaje getById(int id) throws Exception{
+		return PersonajeData.getById(id);
+	}
+	
 	public Personaje getByNombre(Personaje per) throws Exception {
 		return PersonajeData.getByNombre(per, "");
 	}

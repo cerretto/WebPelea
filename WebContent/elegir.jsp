@@ -1,17 +1,18 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="entities.Personaje" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%
-	/*ArrayList<Personaje> list;
+	ArrayList<Personaje> list;
 	String error = "";
 	if (session.getAttribute("error") instanceof String)
 		error = (String)session.getAttribute("error"); 
 
-	if (session.getAttribute("personajeList") instanceof ArrayList)
-		list = (ArrayList<Personaje>) session.getAttribute("personajeList"); 
+	if (session.getAttribute("personajes") instanceof ArrayList)
+		list = (ArrayList<Personaje>) session.getAttribute("personajes"); 
 	else
-		list = null;*/
+		list = null;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,14 +32,17 @@
 			<div class="row" style="text-align: center;">
 				<h3>Personaje 1</h3>	
 			</div>	
-			<select id="personajeIzq" name="personajeIzq" style="width: 100%;">  	
+			<select id="personaje1" name="personaje1" style="width: 100%;"> 
+			<%for (Personaje p : list){ %>
+			<option value="<%=  p.getId() %>"> <%= p.getNombre() %> </option>
+			<%} %>	
 			</select>
 		</div>
 		<div class="col-lg-3" style="margin-top: 20px;">
 			<div class="row" style="text-align: center;">
 				<h3>Personaje 2</h3>	
 			</div>
-			<select id="personajeDer" name="personajeDer" style="width: 100%;">	    	
+			<select id="personaje2" name="personaje2" style="width: 100%;">	    	
 			</select>
 		</div>
 		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">

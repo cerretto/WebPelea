@@ -101,6 +101,50 @@ public class PersonajeAdapter {
 		return per;
 	}
 	
+	public Personaje getById(int id) throws Exception{
+		Personaje per = new Personaje();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try 
+		{
+			stmt = FactoryConection.getInstancia().getConn().prepareStatement("SELECT * FROM personajes"
+					+ " where personajes.id_personaje = ? ");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) 
+			{
+				per.setId(rs.getInt(1));
+				per.setNombre(rs.getString(2));
+				per.setPtsTotales(rs.getInt(3));
+				per.setVida(rs.getInt(4));
+				per.setEnergia(rs.getInt(5));
+				per.setDefensa(rs.getInt(6));
+				per.setEvasion(rs.getInt(7));
+				
+			}
+		
+		
+		} catch (SQLException ex) {
+			throw ex;
+		}
+		finally 
+		{
+			try 
+			{
+				if(rs!=null) rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConection.getInstancia().releaseConn();
+			
+			} catch (Exception ex) {
+				throw ex;
+			}
+		}
+		
+		
+		return per;
+	}
+	
 	public void Guardar(Personaje per) throws Exception
 	{
 		switch(per.getEstData()) {
