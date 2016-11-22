@@ -9,32 +9,39 @@
 </head>
 <body>
 	<div class="container-fluid" style="margin-top: 50px;">
-		<form method="post" action="guardar" class="form-horizontal">	
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label class="col-lg-4 control-label">Nombre</label>
+				<label id="lblNombre" class="col-lg-4 control-label">Nombre</label>
 				<div class="col-lg-4">
-					<input type="text" name="nombre" class="form-control" placeholder="nombre">
+					<input type="text" name="nombre" class="form-control" placeholder="Nombre">
 				</div>
 			</div>
 			<div class="col-lg-12" style="margin-top: 20px;">
-				<label class="col-lg-4 control-label">Defensa</label>
+				<label id="lblDefensa" class="col-lg-4 control-label">Defensa</label>
 				<div class="col-lg-4">
-					<input type="text" name="defensa" class="form-control" placeholder="defensa">
+					<input type="text" name="defensa" class="form-control" placeholder="Defensa">
 				</div>
 			</div>
-			<div>
-				<label id="lblEnergia">Energia</label><input type="text" name="energia" />
+			<div class="col-lg-12" style="margin-top: 20px;">
+				<label id="lblEnergia" class="col-lg-4 control-label">Energía</label>
+				<div class="col-lg-4">
+					<input type="text" name="energia" class="form-control" placeholder="Energía">
+				</div>
 			</div>
-			<div>
-				<label id="lblEvasion">Evasion</label><input type="text" name="evasion" />
+			<div class="col-lg-12" style="margin-top: 20px;">
+				<label id="lblEvasion" class="col-lg-4 control-label">Evasión</label>
+				<div class="col-lg-4">
+					<input type="text" name="evasion" class="form-control" placeholder="Evasión">
+				</div>
 			</div>
-			<div>
-				<label id="lblVida">Vida</label><input type="text" name="vida" />
+			<div class="col-lg-12" style="margin-top: 20px;">
+				<label id="lblVida" class="col-lg-4 control-label">Vida</label>
+				<div class="col-lg-4">
+					<input type="text" name="vida" class="form-control" placeholder="Vida">
+				</div>	
 			</div>
-			<div>
+			<div class="col-lg-4 col-lg-offset-4" style="margin-top: 20px;">
 				<input type="submit" value="Guardar" class="btn btn-success btn-lg btn-block">
 			</div>
-		</form>
 	</div>
 </body>
 </html>
