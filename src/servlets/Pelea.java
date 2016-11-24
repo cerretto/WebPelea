@@ -41,45 +41,44 @@ public class Pelea extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		if(request.getParameter("cancelar") != null){
+			request.getRequestDispatcher("index.jsp").forward(request, response);		
+			return;
+		}
+	
 		String error = "";
-			//Compruebo si la partida esta empezada
-			if (request.getSession().getAttribute("partida") != null) {
+		
+		//Compruebo si la partida esta empezada
+		
+		ctrl = (PartidaLogic)request.getSession().getAttribute("partida");
 				
-				ctrl = (PartidaLogic)request.getSession().getAttribute("partida");
-				
-				
-				
-				//Capturo los datos
-				try{
-					if(request.getParameter("atacar") != null){
-						int energiaAtaque = Integer.parseInt(request.getParameter("energiaAtaque"));
-						if(energiaAtaque == 0){
-							throw new Exception("Ingrese energia");
-						}
-						ctrl.atacar(energiaAtaque);
+		//Capturo los datos
+		try{
+			if(request.getParameter("atacar") != null){
+				int energiaAtaque = Integer.parseInt(request.getParameter("energiaAtaque"));
+					if(energiaAtaque == 0){
+						throw new Exception("Ingrese energia");
 					}
-					else{
-						ctrl.defender();
-					}
-				}	
-				catch (Exception ex) {
-					// TODO Auto-generated catch block
-					error = ex.getMessage();
+					ctrl.atacar(energiaAtaque);
 				}
-				
-			}
-			else {
-				Personaje pj1 = (Personaje)request.getSession().getAttribute("p1");
-				Personaje pj2 = (Personaje)request.getSession().getAttribute("p2");
-				
-				try {
-					ctrl.comenzarPartida(pj1, pj2);
-				} catch (Exception ex) {
-					// TODO Auto-generated catch block
-					error = ex.getMessage();
+				else{
+					ctrl.defender();
 				}
-				
+			}	
+			catch (Exception ex) {
+				// TODO Auto-generated catch block
+				error = ex.getMessage();
 			}
+				
+			Personaje pj1 = (Personaje)request.getSession().getAttribute("p1");
+			Personaje pj2 = (Personaje)request.getSession().getAttribute("p2");
+				
+			try {
+				ctrl.comenzarPartida(pj1, pj2);
+			} catch (Exception ex) {
+				// TODO Auto-generated catch block
+				error = ex.getMessage();				
+			}	
 			
 			request.getSession().setAttribute("partida", ctrl);
 		}
