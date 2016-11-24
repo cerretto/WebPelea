@@ -47,9 +47,13 @@ public class Abm extends HttpServlet {
 		
 		if(request.getParameter("buscar") != null){
 			try{
-				String asd = request.getParameter("nombrePer").toString();
+
+
 				this.mapearAformulario(request, buscar(request));
+
 				request.getRequestDispatcher("agregar.jsp").forward(request, response);
+
+
 			}catch(Exception ex){
 				error = ex.getMessage();
 			}
