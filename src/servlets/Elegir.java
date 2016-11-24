@@ -46,10 +46,15 @@ public class Elegir extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			String nomPer1 = request.getParameter("Personaje1").toString();
 			PersonajeLogic ctrlPer =new logic.PersonajeLogic();
+			
+			String nomPer1 = request.getParameter("Personaje1").toString();
 			Personaje p1= ctrlPer.getByNombre(nomPer1);
 			request.getSession().setAttribute("p1", p1);
+			
+			String nomPer2 = request.getParameter("Personaje2").toString();
+			Personaje p2= ctrlPer.getByNombre(nomPer2);
+			request.getSession().setAttribute("p2", p2);
 			
 			response.sendRedirect("jugar.jsp");
 			

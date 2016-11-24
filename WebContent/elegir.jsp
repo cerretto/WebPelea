@@ -20,14 +20,13 @@
 			<div class="row" style="text-align: center;">
 				<h3>Personaje 1</h3>	
 			</div>	
-			<input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="Warrior 1" required="" autofocus="" type="">
+			<input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="Personaje 1" required="" autofocus="" type="">
 		</div>
 		<div class="col-lg-3" style="margin-top: 20px;">
 			<div class="row" style="text-align: center;">
 				<h3>Personaje 2</h3>	
 			</div>
-			<select id="personaje2" name="personaje2" style="width: 100%;">	    	
-			</select>
+			<input name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="Personaje 2">	    	
 		</div>
 		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">
 			<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">

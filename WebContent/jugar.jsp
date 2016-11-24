@@ -12,6 +12,7 @@
 	<%
 		//codigo java puro, for, if, mapear cosas a variables
 		Personaje p1= (Personaje)session.getAttribute("p1");
+		Personaje p2= (Personaje)session.getAttribute("p2");
 	%>
 	<p><%=p1.getId() %>:<%=p1.getNombre() %> </p>
 </body>
