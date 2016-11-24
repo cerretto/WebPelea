@@ -41,10 +41,10 @@
 		</div>
 		<div class="col-lg-12">
 			<div class="col-lg-4 col-lg-offset-2" style="margin-top: 50px;">
-				<input type="submit" value="Volver" id="btnVolver" class="btn btn-primary btn-lg btn-block" onClick="index.jsp">
+				<input type="submit" name="volver" value="Volver" id="btnVolver" class="btn btn-primary btn-lg btn-block" onClick="index.jsp">
 			</div>
 			<div class="col-lg-4" style="margin-top: 50px;">
-				<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block">
+				<input type="submit" name="comenzar" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block">
 			</div>
 		</div>
 	</form>
