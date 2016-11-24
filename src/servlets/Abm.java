@@ -46,9 +46,7 @@ public class Abm extends HttpServlet {
 		
 		if(request.getParameter("buscar") != null){
 			try{
-					
 				this.mapearAformulario(request, buscar(request));
-				
 			}catch(Exception ex){
 				error = ex.getMessage();
 			}
