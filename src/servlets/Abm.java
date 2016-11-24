@@ -93,6 +93,7 @@ public class Abm extends HttpServlet {
 			perActual.setEnergia(Integer.parseInt(request.getParameter("energia")));
 			perActual.setEvasion(Integer.parseInt(request.getParameter("evasion")));
 			perActual.setVida(Integer.parseInt(request.getParameter("vida")));
+			
 		} else{
 			Personaje perNuevo = new Personaje();
 			
