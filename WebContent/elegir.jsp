@@ -1,19 +1,7 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="entities.Personaje" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%
-	ArrayList<Personaje> list;
-	String error = "";
-	if (session.getAttribute("error") instanceof String)
-		error = (String)session.getAttribute("error"); 
 
-	if (session.getAttribute("personajes") instanceof ArrayList)
-		list = (ArrayList<Personaje>) session.getAttribute("personajes"); 
-	else
-		list = null;
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +12,7 @@
 <body>
 
 <div class="container">	
-	<form method="get">
+	<form method="post" action="elegir">
 		<div class="col-lg-12" style="margin-top: 20px; text-align: center;">
 			<h1>Elija un personaje</h1>
 		</div>
@@ -32,11 +20,7 @@
 			<div class="row" style="text-align: center;">
 				<h3>Personaje 1</h3>	
 			</div>	
-			<select id="personaje1" name="personaje1" style="width: 100%;"> 
-			<%for (Personaje p : list){ %>
-			<option value="<%=  p.getId() %>"> <%= p.getNombre() %> </option>
-			<%} %>	
-			</select>
+			<input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="Warrior 1" required="" autofocus="" type="">
 		</div>
 		<div class="col-lg-3" style="margin-top: 20px;">
 			<div class="row" style="text-align: center;">
@@ -48,7 +32,7 @@
 		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">
 			<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">
 		</div>
-		<div style="color: #f00; "></div>
+		
 	</form>
 </div>
 </body>

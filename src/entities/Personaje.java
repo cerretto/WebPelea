@@ -1,9 +1,14 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Random;
 
 
-public class Personaje extends Entidad {
+public class Personaje extends Entidad implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private int ptsTotales;
 	private int ptsRestantes;
