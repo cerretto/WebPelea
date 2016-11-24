@@ -13,18 +13,19 @@ import logic.PersonajeLogic;
 import java.util.ArrayList;
 
 /**
- * Servlet implementation class elegir
+ * Servlet implementation class Elegir
  */
-@WebServlet("/elegir")
+@WebServlet("/Elegir")
 public class Elegir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	 PersonajeLogic ctrlPer;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Elegir() {
         super();
+        ctrlPer = new PersonajeLogic();
         // TODO Auto-generated constructor stub
         
     }
@@ -44,27 +45,39 @@ public class Elegir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String error = "";
 		try {
-			PersonajeLogic ctrlPer =new logic.PersonajeLogic();
+			
 			
 			String nomPer1 = request.getParameter("Personaje1").toString();
 			Personaje p1= ctrlPer.getByNombre(nomPer1);
-			request.getSession().setAttribute("p1", p1);
-			
+			if(p1.getId() < 1){
+				throw new Exception("Personaje1 invalido!");
+			}
+						
 			String nomPer2 = request.getParameter("Personaje2").toString();
 			Personaje p2= ctrlPer.getByNombre(nomPer2);
+			if(p2.getId() < 1){
+				throw new Exception("Personaje2 invalido!");
+			}
+			
+			if(p1.getNombre().equals(p2.getNombre())){
+				throw new Exception("Elija personajes distintos!");
+			}
+			
+			request.getSession().setAttribute("p1", p1);
 			request.getSession().setAttribute("p2", p2);
 			
 			response.sendRedirect("jugar.jsp");
+			return;
 			
-			
-		} catch (Exception e) {
+		} catch (Exception ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			error = ex.getMessage();
 		}
 		
-		
+		request.getSession().setAttribute("error", error);
+		request.getRequestDispatcher("elegir.jsp").forward(request, response);
 	}
 
 }

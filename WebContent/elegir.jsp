@@ -1,6 +1,14 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+	String error = "";
+	if (session.getAttribute("error") instanceof String)
+		error = (String)session.getAttribute("error"); 
+	
+%>
+
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +20,7 @@
 <body>
 
 <div class="container">	
-	<form method="post" action="elegir">
+	<form method="post" action="Elegir">
 		<div class="col-lg-12" style="margin-top: 20px; text-align: center;">
 			<h1>Elija un personaje</h1>
 		</div>
@@ -31,7 +39,7 @@
 		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">
 			<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">
 		</div>
-		
+		<div style="color: #f00; "><%=error%></div>
 	</form>
 </div>
 </body>
