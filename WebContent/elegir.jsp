@@ -28,7 +28,7 @@
 			<div class="row" style="text-align: center;">
 				<h3>Personaje 1</h3>	
 			</div>	
-			<input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="Personaje 1" required="" autofocus="" type="">
+			<input name="Personaje1" id="inputPersonaje1" class="form-control" placeholder="Personaje 1">
 		</div>
 		<div class="col-lg-3" style="margin-top: 20px;">
 			<div class="row" style="text-align: center;">
@@ -41,7 +41,7 @@
 		</div>
 		<div class="col-lg-12">
 			<div class="col-lg-4 col-lg-offset-2" style="margin-top: 50px;">
-				<input type="submit" name="volver" value="Volver" id="btnVolver" class="btn btn-primary btn-lg btn-block" onClick="index.jsp">
+				<input type="submit" name="volver" value="Volver" id="btnVolver" class="btn btn-primary btn-lg btn-block">
 			</div>
 			<div class="col-lg-4" style="margin-top: 50px;">
 				<input type="submit" name="comenzar" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block">
