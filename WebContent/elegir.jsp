@@ -12,7 +12,7 @@
 <body>
 
 <div class="container">	
-	<form method="post" action="elegir">
+	<form method="post" action="Elegir">
 		<div class="col-lg-12" style="margin-top: 20px; text-align: center;">
 			<h1>Elija un personaje</h1>
 		</div>

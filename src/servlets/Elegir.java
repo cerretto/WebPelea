@@ -13,9 +13,9 @@ import logic.PersonajeLogic;
 import java.util.ArrayList;
 
 /**
- * Servlet implementation class elegir
+ * Servlet implementation class Elegir
  */
-@WebServlet("/elegir")
+@WebServlet("/Elegir")
 public class Elegir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
