@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Personaje;
 import logic.PersonajeLogic;
 
-import java.util.ArrayList;
+
 
 /**
  * Servlet implementation class Elegir
@@ -87,6 +87,7 @@ public class Elegir extends HttpServlet {
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
 			error = ex.getMessage();
+			
 		}
 		
 		request.getSession().setAttribute("error", error);

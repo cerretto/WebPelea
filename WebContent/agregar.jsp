@@ -16,7 +16,7 @@
 				<input type="text" name="nombrePer" class="form-control" placeholder="Nombre del Personaje">
 			</div>
 			<div class="col-lg-6">
-				<input type="submit" value="Buscar" class="btn btn-primary">
+				<input type="submit" name="buscar" value="Buscar" class="btn btn-primary">
 			</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblNombre" class="col-lg-1 control-label" style="margin-top: 5px;">Nombre:</label>
@@ -24,7 +24,7 @@
 						<input type="text" name="nombre" class="form-control" placeholder="Nombre">
 					</div>
 					<div class="col-lg-4 col-lg-offset-2">
-						<input type="submit" value="Guardar" class="btn btn-success btn-lg btn-block">
+						<input type="submit" name="guardar" value="Guardar" class="btn btn-success btn-lg btn-block">
 					</div>
 				</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
@@ -34,7 +34,7 @@
 						<p>(máx. 20)</p>
 					</div>
 					<div class="col-lg-4 col-lg-offset-2">
-						<input type="submit" value="Borrar" class="btn btn-danger btn-lg btn-block">
+						<input type="submit" name="borrar" value="Borrar" class="btn btn-danger btn-lg btn-block">
 					</div>
 				</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
@@ -64,10 +64,10 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-4 col-lg-offset-2" style="margin-top: 20px;">
-						<input type="submit" value="Resetear valores" class="btn btn-warning btn-block">
+						<input type="submit" name="resetear" value="Resetear valores" class="btn btn-warning btn-block">
 					</div>
 					<div class="col-lg-4 col-lg-offset-1" style="margin-top: 20px;">
-						<input type="submit" value="Cancelar" class="btn btn-info btn-block">
+						<input type="submit" name="cancelar" value="Cancelar" class="btn btn-info btn-block">
 					</div>
 				</div>
 		</div>
