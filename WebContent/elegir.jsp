@@ -36,10 +36,12 @@
 			</div>
 			<input name="Personaje2" id="inputPersonaje2" class="form-control" placeholder="Personaje 2">	    	
 		</div>
+		<div class="col-lg-6 col-lg-offset-3" style="color: #f00; margin-top: 20px; text-align: center;">
+			<%=error%>
+		</div>
 		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">
 			<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">
 		</div>
-		<div style="color: #f00; "><%=error%></div>
 	</form>
 </div>
 </body>
