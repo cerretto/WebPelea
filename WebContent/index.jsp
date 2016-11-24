@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<title>Inicio</title>
+<title>Turn Based Combat</title>
 </head>
 <body>
 <br>
@@ -18,16 +18,20 @@
 		<br>
 		<br>
 			<div class="col-lg-12" style="margin-top: 20px; text-align: center;">
-			<h3>Que desea hacer??</h3>
+			<h3>Elija una opción</h3>
 		</div>
-		<div class="col-lg-12" style="margin-top: 40px;">
-		<div class="col-lg-4 col-lg-offset-1" style="margin-top: 50px;">
-			<input type="submit" value="Comenzar Partida" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">
+	<form action="Index" method="post">
+		<div class="col-lg-12" style="margin-top: 20px;">
+		<div class="col-lg-4 col-lg-offset-1" style="margin-top: 30px;">
+			<!--<a href="elegir.jsp" class="btn btn-primary btn-lg btn-block">Comenzar Partida</a>-->
+			<input type="submit" name="comenzar" value="Comenzar Partida" class="btn btn-primary btn-lg btn-block"/>
 		</div>
-		<div class="col-lg-4 col-lg-offset-2" style="margin-top: 50px;">
-			<input type="submit" value="ABM Personaje" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">
+		<div class="col-lg-4 col-lg-offset-2" style="margin-top: 30px;">
+			<!--<a href="agregar.jsp" class="btn btn-primary btn-lg btn-block">ABM Personaje</a>-->
+			<input type="submit" name="abm" value="ABM Personaje" class="btn btn-primary btn-lg btn-block"/>
 		</div>
 		</div>
+	</form>
 </div>
 	
 	

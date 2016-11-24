@@ -45,6 +45,19 @@ public class Elegir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("volver") != null){
+			
+			if((request.getSession().getAttribute("p1") != null)  || (request.getSession().getAttribute("p2")!=null)){
+				request.getSession().removeAttribute("p1");
+				request.getSession().removeAttribute("p2");
+			}
+			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+
+					
+			return;
+		}
+		
 		String error = "";
 		try {
 			
