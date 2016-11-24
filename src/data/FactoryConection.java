@@ -13,7 +13,7 @@ public class FactoryConection {
 	private String host="localhost";
 	private String port="3306";
 	private String user ="root";
-	private String pass="algy";
+	private String pass="";
 	private String db="lucha";
 	private String dbType="mysql";
 	
