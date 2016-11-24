@@ -1,5 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@page import="entities.Personaje"%>
+<%
+	String error = "";
+	Personaje p = null;
+	if (session.getAttribute("personaje") instanceof Personaje)
+	p = (Personaje)session.getAttribute("personaje"); 
+	
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,7 +31,7 @@
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblNombre" class="col-lg-1 control-label" style="margin-top: 5px;">Nombre:</label>
 					<div class="col-lg-4">
-						<input type="text" name="nombre" class="form-control" placeholder="Nombre">
+						<input type="text" name="nombre" value="<%= p == null ? "": p.getNombre() %>" class="form-control" placeholder="Nombre">
 					</div>
 					<div class="col-lg-4 col-lg-offset-2">
 						<input type="submit" name="guardar" value="Guardar" class="btn btn-success btn-lg btn-block">

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Entidad.estadoData;
 import entities.Personaje;
 import logic.PersonajeLogic;
 
@@ -46,19 +47,30 @@ public class Abm extends HttpServlet {
 		
 		if(request.getParameter("buscar") != null){
 			try{
-					
+				String asd = request.getParameter("nombrePer").toString();
 				this.mapearAformulario(request, buscar(request));
-				
+				request.getRequestDispatcher("agregar.jsp").forward(request, response);
 			}catch(Exception ex){
 				error = ex.getMessage();
 			}
 			
 			return;
 		}else if (request.getParameter("guardar") != null){
+			try{
+				this.guardar(request);
+			}catch(Exception ex){
+				error = ex.getMessage();
+			}
 			return;
 		}else if (request.getParameter("borrar") != null){
+			
 			return;
 		}else if (request.getParameter("resetear") != null){
+			try{
+				this.limpiar(response);
+			}catch(Exception ex){
+				error = ex.getMessage();
+			}
 			return;
 		}else if (request.getParameter("cancelar") != null){
 			return;
@@ -73,7 +85,7 @@ public class Abm extends HttpServlet {
 	}
 	
 	private Personaje buscar(HttpServletRequest request) throws Exception{
-		String nomPer = request.getParameter("Personaje1").toString();
+		String nomPer = request.getParameter("nombrePer").toString();
 		perActual= ctrl.getByNombre(nomPer);
 		if(perActual.getId() < 1){
 			throw new Exception("Personaje1 invalido!");
@@ -81,27 +93,47 @@ public class Abm extends HttpServlet {
 		return perActual;
 	}
 	
+	private void guardar(HttpServletRequest request) throws Exception{
+		try{
+			ctrl.guardar(mapearAdatos(request));
+		} catch(Exception ex){
+			throw ex;
+		}
+		
+	}
+	
 	private void mapearAformulario(HttpServletRequest request,Personaje p){
 		request.getSession().setAttribute("personaje", p);
 		return;
 	}
 	
-	private void mapearAdatos(HttpServletRequest request){
+	private Personaje mapearAdatos(HttpServletRequest request){
 		if (perActual.getId() > 0){
 			perActual.setNombre(request.getParameter("nombre"));
 			perActual.setDefensa(Integer.parseInt(request.getParameter("defensa")));
 			perActual.setEnergia(Integer.parseInt(request.getParameter("energia")));
 			perActual.setEvasion(Integer.parseInt(request.getParameter("evasion")));
 			perActual.setVida(Integer.parseInt(request.getParameter("vida")));
+			perActual.setEstData(estadoData.Modified);
+			return perActual;
 			
 		} else{
 			Personaje perNuevo = new Personaje();
-			
+			perNuevo.setNombre(request.getParameter("nombre"));
+			perNuevo.setDefensa(Integer.parseInt(request.getParameter("defensa")));
+			perNuevo.setEnergia(Integer.parseInt(request.getParameter("energia")));
+			perNuevo.setEvasion(Integer.parseInt(request.getParameter("evasion")));
+			perNuevo.setVida(Integer.parseInt(request.getParameter("vida")));
+			perNuevo.setEstData(estadoData.New);
+			return perNuevo;
 		}
 		
-		return;
+	
 	}
 	
+	private void limpiar(HttpServletResponse response) throws Exception{
+		response.sendRedirect("agregar.jsp");
+	}
 	
 
 }
