@@ -39,8 +39,13 @@
 		<div class="col-lg-6 col-lg-offset-3" style="color: #f00; margin-top: 20px; text-align: center;">
 			<%=error%>
 		</div>
-		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">
-			<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block"">
+		<div class="col-lg-12">
+			<div class="col-lg-4 col-lg-offset-2" style="margin-top: 50px;">
+				<input type="submit" value="Volver" id="btnVolver" class="btn btn-primary btn-lg btn-block" onClick="index.jsp">
+			</div>
+			<div class="col-lg-4" style="margin-top: 50px;">
+				<input type="submit" value="Comenzar" id="btnComenzar" class="btn btn-primary btn-lg btn-block">
+			</div>
 		</div>
 	</form>
 </div>
