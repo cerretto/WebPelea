@@ -39,7 +39,7 @@ public class PersonajeLogic {
 			}
 			
 			
-			if(per.getNombre().equals(getByNombre(per).getNombre()) && per.getId() != getByNombre(per).getId()){
+			if(per.getNombre().equals(this.getByNombre(per).getNombre()) && per.getId() != this.getByNombre(per).getId()){
 				error += "Nombre de personaje ya existente \n";
 			}
 			
@@ -76,15 +76,36 @@ public class PersonajeLogic {
 	}
 	
 	public Personaje getById(int id) throws Exception{
-		return PersonajeData.getById(id);
+		Personaje p;
+		p = PersonajeData.getById(id);
+		/*
+		if(p.getId() < 1)
+			throw new Exception("Personaje invalido");
+		*/
+			
+		return p;
 	}
 	
 	public Personaje getByNombre(Personaje per) throws Exception {
-		return PersonajeData.getByNombre(per, "");
+		Personaje p;
+		p = PersonajeData.getByNombre(per, "");
+		/*
+		if(p.getId() < 1)
+			throw new Exception("Personaje invalido");
+		*/
+			
+		return p;
 	}
 	
 	public Personaje getByNombre(String nombre) throws Exception {
-		return PersonajeData.getByNombre(null, nombre);
+		Personaje p;
+		p = PersonajeData.getByNombre(null, nombre);
+		/*
+		if(p.getId() < 1)
+			throw new Exception("Personaje invalido");
+		*/
+					
+		return p;
 	}
 	
 	public void asignarPuntos(Personaje ganador) throws Exception{

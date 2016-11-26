@@ -1,14 +1,39 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+
 <%@page import="entities.Personaje"%>
 <%
 	String error = "";
+	if (session.getAttribute("error") instanceof String)
+		error = (String)session.getAttribute("error"); 
+	
 	Personaje p = null;
 	if (session.getAttribute("personaje") instanceof Personaje)
-	p = (Personaje)session.getAttribute("personaje"); 
-	
+		p = (Personaje)session.getAttribute("personaje"); 
+	String nombre = "";
+	String vida = "";
+	String defensa = "";
+	String energia = "";
+	String evasion = "";
+	String ptsRestantes = "";
+	String ptsTotales = "";
+	if (p != null){
+		nombre = p.getNombre();
+		vida = String.valueOf(p.getVida());
+		energia = String.valueOf(p.getEnergia());
+		defensa = String.valueOf(p.getDefensa());
+		evasion = String.valueOf(p.getEvasion());
+		ptsRestantes = String.valueOf(p.getPtsRestantes());
+		ptsTotales = String.valueOf(p.getPtsTotales());
+	}
 %>
+<script type="text/javascript">
+//alert("asd");
+<!--
+
+//-->
+</script>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,11 +52,12 @@
 			</div>
 			<div class="col-lg-6">
 				<input type="submit" name="buscar" value="Buscar" class="btn btn-primary">
+				<label> <%= error %></label>
 			</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblNombre" class="col-lg-1 control-label" style="margin-top: 5px;">Nombre:</label>
 					<div class="col-lg-4">
-						<input type="text" name="nombre" value="<%= p == null ? "": p.getNombre() %>" class="form-control" placeholder="Nombre">
+						<input type="text" name="nombre" value="<%= nombre %>" class="form-control" placeholder="Nombre">
 					</div>
 					<div class="col-lg-4 col-lg-offset-2">
 						<input type="submit" name="guardar" value="Guardar" class="btn btn-success btn-lg btn-block">
@@ -40,7 +66,7 @@
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblDefensa" class="col-lg-1 control-label" style="margin-top: 5px;">Defensa:</label>
 					<div class="col-lg-4">
-						<input type="text" name="defensa" class="form-control" placeholder="Defensa">
+						<input type="text" name="defensa" value="<%= defensa %>" class="form-control" placeholder="Defensa">
 						<p>(máx. 20)</p>
 					</div>
 					<div class="col-lg-4 col-lg-offset-2">
@@ -50,31 +76,31 @@
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblEnergia" class="col-lg-1 control-label" style="margin-top: 5px;">Energía:</label>
 					<div class="col-lg-4">
-						<input type="text" name="energia" class="form-control" placeholder="Energía">
+						<input type="text" name="energia" value="<%= energia %>" class="form-control" placeholder="Energía">
 					</div>
 				</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblEvasion" class="col-lg-1 control-label" style="margin-top: 5px;">Evasión:</label>
 					<div class="col-lg-4">
-						<input type="text" name="evasion" class="form-control" placeholder="Evasión">
+						<input type="text" name="evasion"  value="<%= evasion %>" class="form-control" placeholder="Evasión">
 						<p>(máx. 80)</p>
 					</div>
 				</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblVida" class="col-lg-1 control-label" style="margin-top: 5px;">Vida:</label>
 					<div class="col-lg-4">
-						<input type="text" name="vida" class="form-control" placeholder="Vida">
+						<input type="text" name="vida" value="<%= vida %>" class="form-control" placeholder="Vida">
 					</div>	
 				</div>
 				<div class="col-lg-12" style="margin-top: 20px;">
 					<label id="lblPtosRestantes" class="col-lg-2 control-label" style="margin-top: 5px;">Ptos restantes:</label>
 					<div class="col-lg-2">
-						<input type="text" name="ptosRestantes" class="form-control">
+						<input type="text" name="ptosRestantes" value="<%= ptsRestantes %>" class="form-control">
 					</div>	
 				</div>
 				<div class="row">
 					<div class="col-lg-4 col-lg-offset-2" style="margin-top: 20px;">
-						<input type="submit" name="resetear" value="Resetear valores" class="btn btn-warning btn-block">
+						<input type="submit" name="resetear" value="Resetear" class="btn btn-warning btn-block">
 					</div>
 					<div class="col-lg-4 col-lg-offset-1" style="margin-top: 20px;">
 						<input type="submit" name="cancelar" value="Cancelar" class="btn btn-info btn-block">

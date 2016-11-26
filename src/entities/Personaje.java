@@ -93,10 +93,16 @@ public class Personaje extends Entidad implements Serializable  {
 	}
 
 	public int getPtsRestantes() {
+		ptsRestantes = (ptsTotales - (vida + energia + defensa + evasion));
+		if(ptsRestantes <= 0){
+			return 0;
+		}
 		return ptsRestantes;
 	}
 
+	/*
 	public void setPtsRestantes(int ptsRestantes) {
 		this.ptsRestantes = ptsRestantes;
 	}
+	*/
 }

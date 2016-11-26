@@ -26,7 +26,7 @@ public class Abm extends HttpServlet {
     public Abm() {
         super();
         ctrl = new PersonajeLogic();
-        perActual = new Personaje();
+        perActual = null;
         // TODO Auto-generated constructor stub
     }
 
@@ -44,75 +44,90 @@ public class Abm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String error =  "";
-		
-		if(request.getParameter("buscar") != null){
-			try{
-
-
+		try{
+			
+			if(request.getParameter("buscar") != null){
+				
 				this.mapearAformulario(request, buscar(request));
-
-				request.getRequestDispatcher("agregar.jsp").forward(request, response);
-
-
-			}catch(Exception ex){
-				error = ex.getMessage();
-			}
-			
-			return;
-		}else if (request.getParameter("guardar") != null){
-			try{
+	
+			}else if (request.getParameter("guardar") != null){
+				
 				this.guardar(request);
-			}catch(Exception ex){
-				error = ex.getMessage();
-			}
-			return;
-		}else if (request.getParameter("borrar") != null){
+				
+			}else if (request.getParameter("borrar") != null){
+				
+				this.borrar(request);
+				
+			}else if (request.getParameter("resetear") != null){
+				
+				this.limpiar(request, response);
 			
-			return;
-		}else if (request.getParameter("resetear") != null){
-			try{
-				this.limpiar(response);
-			}catch(Exception ex){
-				error = ex.getMessage();
+			}else if (request.getParameter("cancelar") != null){
+				
+				this.cancelar(request, response);
+				return;
+				
+			} else {
+				//request.getRequestDispatcher("agregar.jsp").forward(request, response);
+				response.sendRedirect("agregar.jsp");
+				return;
+				
 			}
-			return;
-		}else if (request.getParameter("cancelar") != null){
-			return;
-		} else {
-			//request.getRequestDispatcher("agregar.jsp").forward(request, response);
-			return;
+			
+		} catch(Exception ex){
+			error = ex.getMessage();
+			perActual = null;
+			request.getSession().setAttribute("personaje", null);
+			
 		}
 		
-		
+		request.getSession().setAttribute("error", error);
+		request.getRequestDispatcher("agregar.jsp").forward(request, response);
 	
-		
 	}
 	
 	private Personaje buscar(HttpServletRequest request) throws Exception{
 		String nomPer = request.getParameter("nombrePer").toString();
+		if(nomPer.equals("")) throw new Exception("Ingrese un nombre");
 		perActual= ctrl.getByNombre(nomPer);
-		if(perActual.getId() < 1){
-			throw new Exception("Personaje1 invalido!");
-		}
+		if(perActual.getId() < 1) throw new Exception("Personaje invalido!");
+		
 		return perActual;
 	}
 	
 	private void guardar(HttpServletRequest request) throws Exception{
-		try{
-			ctrl.guardar(mapearAdatos(request));
-		} catch(Exception ex){
-			throw ex;
-		}
 		
+		ctrl.guardar(mapearAdatos(request));
+		perActual = null;
+		request.getSession().setAttribute("personaje", null);
+	}
+	
+	private void borrar(HttpServletRequest request) throws Exception {
+		if (perActual != null){
+			perActual.setEstData(estadoData.Deleted);
+			ctrl.guardar(perActual);
+			request.getSession().setAttribute("personaje", null);
+			perActual = null;
+		} else{
+			throw new Exception("Elija personaje a borrar");
+		}
+	}
+	
+	private void cancelar(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.getSession().setAttribute("personaje", null);
+		request.getSession().setAttribute("error", "");
+		perActual = null;
+		response.sendRedirect("index.jsp");
 	}
 	
 	private void mapearAformulario(HttpServletRequest request,Personaje p){
 		request.getSession().setAttribute("personaje", p);
-		return;
+		
 	}
 	
-	private Personaje mapearAdatos(HttpServletRequest request){
-		if (perActual.getId() > 0){
+	private Personaje mapearAdatos(HttpServletRequest request) throws Exception{
+						
+		if (perActual != null ){
 			perActual.setNombre(request.getParameter("nombre"));
 			perActual.setDefensa(Integer.parseInt(request.getParameter("defensa")));
 			perActual.setEnergia(Integer.parseInt(request.getParameter("energia")));
@@ -135,8 +150,10 @@ public class Abm extends HttpServlet {
 	
 	}
 	
-	private void limpiar(HttpServletResponse response) throws Exception{
-		response.sendRedirect("agregar.jsp");
+	private void limpiar(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.getSession().setAttribute("personaje", null);
+		request.getSession().setAttribute("error", "");
+		perActual = null;
 	}
 	
 
