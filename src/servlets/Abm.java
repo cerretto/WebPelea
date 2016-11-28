@@ -116,6 +116,8 @@ public class Abm extends HttpServlet {
 	private void cancelar(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.getSession().setAttribute("personaje", null);
 		request.getSession().setAttribute("error", "");
+		request.getSession().removeAttribute("personaje");
+		request.getSession().removeAttribute("error");
 		perActual = null;
 		response.sendRedirect("index.jsp");
 	}
