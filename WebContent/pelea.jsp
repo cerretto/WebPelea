@@ -1,4 +1,4 @@
-<%@page import="entities.Personaje" %>
+<%@page import="entities.*" %>
 <%@page import="logic.PartidaLogic" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,19 +8,11 @@
 	if (session.getAttribute("error") instanceof String)
 		error = (String)session.getAttribute("error"); 
 
-	Personaje personaje1 = null;
-	Personaje personaje2 = null;
-	if (session.getAttribute("p1") instanceof Personaje){
-		personaje1 = (Personaje)session.getAttribute("p1"); 
-	}
-	if (session.getAttribute("p1") instanceof Personaje){
-		personaje2 = (Personaje)session.getAttribute("p2");
-	}
-	
+	PersonajeEnLucha jugador1 = null;
+	PersonajeEnLucha jugador2 = null;
 	PartidaLogic ctrl = null;
-	if (session.getAttribute("ctrl") instanceof PartidaLogic){
-		ctrl = (PartidaLogic)session.getAttribute("crtl"); 
-	}
+	String turnoDe = "";
+	boolean partidaVigente = false;
 	
 	String nombre1 = "";
 	String id1 = "";
@@ -36,32 +28,50 @@
 	String energia2 = "";
 	String evasion2 = "";
 	
-	if (personaje1 != null){
-		id1 = String.valueOf(personaje1.getId());
-		nombre1 = personaje1.getNombre();
-		vida1 = String.valueOf(personaje1.getVida());
-		energia1 = String.valueOf(personaje1.getEnergia());
-		defensa1 = String.valueOf(personaje1.getDefensa());
-		evasion1 = String.valueOf(personaje1.getEvasion());
-	}
-	if (personaje2 != null){
-		id2 = String.valueOf(personaje2.getId());
-		nombre2 = personaje2.getNombre();
-		vida2 = String.valueOf(personaje2.getVida());
-		energia2 = String.valueOf(personaje2.getEnergia());
-		defensa2 = String.valueOf(personaje2.getDefensa());
-		evasion2 = String.valueOf(personaje2.getEvasion());
-	}
-	
-	String turnoDe = "";
-	boolean partidaVigente = false;
-	if(ctrl != null){
+	if (session.getAttribute("partida") instanceof PartidaLogic)
+		ctrl = (PartidaLogic)session.getAttribute("partida"); 
+	if(ctrl == null){
+		nombre1 = ((Personaje)session.getAttribute("p1")).getNombre();
+		nombre2 = ((Personaje)session.getAttribute("p2")).getNombre();
+	} else {
+		jugador1 = ctrl.getJugador1();
+		jugador2 = ctrl.getJugador2();
 		turnoDe = ctrl.getEnTurno().getP().getNombre();
 		partidaVigente = ctrl.isPartidaEnCurso();
 	}
 	
+	String strComenzar = "";
+	String strAccion = "";
+	
+	if(partidaVigente == true){
+		strComenzar = " disabled=\"disabled\"";
+	} else {
+		strAccion = " disabled=\"disabled\"";
+	}
+	
+	
+	if (jugador1 != null){
+		id1 = String.valueOf(jugador1.getP().getId());
+		nombre1 = jugador1.getP().getNombre();
+		vida1 = String.valueOf(jugador1.getVidaActual());
+		energia1 = String.valueOf(jugador1.getEnergiaActual());
+		defensa1 = String.valueOf(jugador1.getP().getDefensa());
+		evasion1 = String.valueOf(jugador1.getP().getEvasion());
+	}
+	if (jugador2 != null){
+		id2 = String.valueOf(jugador2.getP().getId());
+		nombre2 = jugador2.getP().getNombre();
+		vida2 = String.valueOf(jugador2.getVidaActual());
+		energia2 = String.valueOf(jugador2.getEnergiaActual());
+		defensa2 = String.valueOf(jugador2.getP().getDefensa());
+		evasion2 = String.valueOf(jugador2.getP().getEvasion());
+	}
+	
+	
+	
 %>   
  
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -158,10 +168,10 @@
 				<input id="txtPersonajeTurno" class="form-control" value="<%= turnoDe%>">
 			</div>
 			<div class="col-lg-2 col-lg-offset-2" style="margin-top: 5px;">
-				<input type="submit" value="Atacar" name="atacar" id="btnAtacar" class="btn btn-danger btn-lg btn-block"">
+				<input type="submit" value="Atacar" name="atacar" id="btnAtacar" class="btn btn-danger btn-lg btn-block" <%= strAccion %>>
 			</div>
 			<div class="col-lg-2" style="margin-top: 5px;">
-				<input type="submit" value="Defender" name="defender" id="btnDefender" class="btn btn-warning btn-lg btn-block"">
+				<input type="submit" value="Defender" name="defender" id="btnDefender" class="btn btn-warning btn-lg btn-block" <%= strAccion %>>
 			</div>
 		</div>
 		<div class="col-lg-12">
@@ -172,10 +182,10 @@
 				<input name="energiaAtaque" id="txtEnergiaAtaque" class="form-control">
 			</div>
 			<div class="col-lg-2 col-lg-offset-2" style="margin-top: 35px;">
-				<input type="submit" value="Cancelar" id="btnCancelar" name="cancelar" class="btn btn-default btn-lg btn-block"">
+				<input type="submit" value="Cancelar" id="btnCancelar" name="cancelar" class="btn btn-default btn-lg btn-block" />
 			</div>
 			<div class="col-lg-4" style="margin-top: 35px;">
-				<input type="submit" value="Comenzar Partida" name="comenzar" id="btnComenzar" class="btn btn-success btn-lg btn-block"">
+				<input type="submit" value="Comenzar Partida" name="comenzar" id="btnComenzar" class="btn btn-success btn-lg btn-block" <%= strComenzar %> />
 			</div>
 		</div>
 	</form>
@@ -185,11 +195,3 @@
 </body>
 </html>
 
-<script type="text/javascript">
-if(partidaVigente == true){
-	document.getElementById("btnComenzar").disabled = true;	
-}else{
-	document.getElementById("btnComenzar").disabled = false;	
-}
-
-</script>

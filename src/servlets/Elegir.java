@@ -87,6 +87,7 @@ public class Elegir extends HttpServlet {
 			request.getSession().setAttribute("p2", p2);
 			
 			//response.sendRedirect("pelea.jsp");
+			request.getSession().removeAttribute("error");
 			request.getRequestDispatcher("pelea.jsp").forward(request, response);
 			return;
 			

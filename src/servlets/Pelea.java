@@ -50,6 +50,8 @@ public class Pelea extends HttpServlet {
 				request.getSession().removeAttribute("p1");
 				request.getSession().setAttribute("p2", null);
 				request.getSession().removeAttribute("p2");
+				request.getSession().setAttribute("partida", null);
+				request.getSession().removeAttribute("partida");
 				request.getSession().setAttribute("error", "");
 				request.getSession().removeAttribute("error");
 				request.getRequestDispatcher("index.jsp").forward(request, response);		
@@ -57,13 +59,14 @@ public class Pelea extends HttpServlet {
 			}
 			
 			//Si se clickeo en "Comenzar" o la partida no esta empezada
-			if(request.getParameter("comenzar") != null || request.getSession().getAttribute("partida") == null){
+			if(request.getParameter("comenzar") != null && request.getSession().getAttribute("partida") == null){
 				if(request.getSession().getAttribute("p1") == null || request.getSession().getAttribute("p2") == null)
 					throw new Exception("Elija personajes!");
 				Personaje pj1 = (Personaje)request.getSession().getAttribute("p1");
 				Personaje pj2 = (Personaje)request.getSession().getAttribute("p2");
 					
 				ctrl.comenzarPartida(pj1, pj2);
+				ctrl.setPartidaEnCurso(true);
 				request.getSession().setAttribute("partida", ctrl);
 				
 			}
@@ -79,6 +82,9 @@ public class Pelea extends HttpServlet {
 					throw new Exception("No Ingreso energia valida, defendio!");				
 				}
 				ctrl.atacar(energiaAtaque);
+				if (!ctrl.isPartidaEnCurso()){
+					throw new Exception("GANO " + ctrl.getEnTurno().getP().getNombre());
+				}
 			}
 			
 			//si clickeo en "Defender"
@@ -87,6 +93,9 @@ public class Pelea extends HttpServlet {
 					throw new Exception ("Comienze partida primero!");
 				ctrl = (PartidaLogic)request.getSession().getAttribute("partida");
 				ctrl.defender();
+				if (!ctrl.isPartidaEnCurso()){
+					throw new Exception("GANO " + ctrl.getEnTurno().getP().getNombre());
+				}
 			}
 				
 		
@@ -95,7 +104,7 @@ public class Pelea extends HttpServlet {
 		} catch (Exception ex){
 			error = ex.getMessage();
 		}
-		
+		request.getSession().setAttribute("partida", ctrl);
 		request.getSession().setAttribute("error", error);
 		request.getRequestDispatcher("pelea.jsp").forward(request, response);	
 	}	
